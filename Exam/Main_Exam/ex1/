@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int korean_GP = 0;
+    int english_GP = 0;
+    int math_GP = 0;
+    // GP = grade point = 학점
+    float korean_rating = 0;
+    float english_rating = 0;
+    float math_rating = 0;
+    // rating = 평점
+
+    float Sum_GP = 0; //학점 합계
+    float Sum_RGP = 0; //평점 합계
+
+    scanf("%d %f", &korean_GP, &korean_rating);
+    scanf("%d %f", &english_GP, &english_rating);
+    scanf("%d %f", &math_GP, &math_rating);
+
+
+    //계산
+    //학점 계산법 : 평점 합계(학점*평점) / 학점 합계
+    
+   Sum_RGP = ((korean_GP * korean_rating) + (english_GP * english_rating) + (math_GP * math_rating));
+   Sum_GP = korean_GP + english_GP + math_GP;
+
+   printf("%f %f", Sum_RGP, Sum_GP);
+   printf("%d", (Sum_GP >= 10 && (Sum_RGP/Sum_GP) >= 4.0));
+
+   return 0;
+
+}
+
+
