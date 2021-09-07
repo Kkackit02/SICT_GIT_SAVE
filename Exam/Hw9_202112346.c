@@ -1,8 +1,9 @@
-/* 이름 : 정근녕
- * 학번 : 202112346
- * 프로그램 작성일 : 2021-04-18
- * 프로그램 설명 : 과제 7 입니다.
- */
+/*
+이름 : 정근녕
+학번 : 202112346
+프로그램 작성일 : 2021-06-12
+프로그램 설명 : Hw9_202112346 과제 9 입니다.
+*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
@@ -20,31 +21,28 @@ int main(void)
 	int* start_p = &start;
 
 	getInput(start_p, len_p);
-
 	int **matrix;
 
 	int j = 0;
 	//할당
-	matrix = (int**)malloc(sizeof(int*)*(len-start+1));
-	// 8 10 -> 10 - 8 + 1 = 3 3칸 생성
+	matrix = (int**)malloc(sizeof(int*)*(len-start+1)); // 단수 배열 할당
 
-	int range = len - start + 1;
+	int range = len - start + 1; //8 10 => 10 - 8 +1 = 3-> 출력해야할 단의 개수
 
-
-	for(int j = 0; j < range; j++)
+	for(int j = 0; j < range; j++) // 곱 배열 할당
 	{
 		matrix[j] = (int*)malloc(sizeof(int) * ((start + j) <= 9 ? 9 : start + j)); // 9단까지는 9 곱까지, 9단 초과부터는 단수만큼
 	}	
 	
-	
-
     gugu(start, len, matrix);
 
-	for(int j = 0; j < range; j++)
+	for(int j = 0; j < range; j++) // 곱 할당 해제
 	{
 		free(matrix[j]);
 	}	
-	free(matrix);
+	free(matrix); // 단 할당 해제
+
+
 	return 0;
 }
 
@@ -62,7 +60,7 @@ int getInput(int*start_p, int*len_p)
     	printf("단수를 입력하시오: ");
     	scanf("%d %d", &start, &len);
 
-		if(start <= len && ((start >= 1 && start <= 1000) && (len >= 1 && len <= 1000)))
+		if(start <= len && ((start >= 1 && start <= 1000) && (len >= 1 && len <= 1000))) // 범위대로 입력받기
 		{
 			*start_p = start;
 			*len_p = len;
@@ -78,7 +76,7 @@ int getInput(int*start_p, int*len_p)
 }
 
 
-void gugu(int start, int len, int** matrix)   // 값을 배열안에 넣는 함수
+void gugu(int start, int len, int** matrix)   // 값을 계산하고 배열안에 넣는 함수
 {
 	
 	for (int i = 0; i < len - start + 1; i++) // 배열 초기화
@@ -99,7 +97,6 @@ void gugu(int start, int len, int** matrix)   // 값을 배열안에 넣는 함�
 		}
     }
 
-
     display(start, len, matrix);
 }
 	
@@ -112,15 +109,15 @@ void display(int start, int len, int** dis_matrix) //출력 함수
 	    // 현재 단수
         for (int i= 0; i < len - start + 1; i++)  //단수 출력 x(이부분) * &
         {
-			int x = j + 1; // 현재 곱
+			int x = j + 1; // 현재 곱 
 			int y = i + start; // 현재 단
 	    	int temp = log10(dis_matrix[i][y <= 9 ? 8 : start + i - 1]) + 1; // 최종 결과 자릿수 구하기 -> 모양 이쁘게 만들기 위해서 구하는 것
 
-			if((y < 10 && x < 10) || (y > 9 && x < y + 1))
+			if((y < 10 && x < 10) || (y > 9 && x < y + 1)) // 현재 단수가 9단 안이면 9단까지 곱 출력 || 현재 단수가 9단 초과면 그 단수만큼 곱 출력
 			{
 				switch(temp) // 최종 결과 자릿수에 맞추어 크기 맞추기
 				{
-					case 1:
+					case 1: // 단의 제일 높은 곱의 자릿수가 1
 					{
 					printf("%1d *%1d =%1d|", i + start, j + 1, dis_matrix[i][j]);
 					break;
