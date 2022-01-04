@@ -14,30 +14,31 @@ int main(void)
     int zero_Num; //1의 자리
     int first_Num; //10의 자리
     int second_Num; // 100의 자리
-    int third_Num; // 1000의 자리
 
     int result = 0;
     int temp = 0;
 
     for(int i = 1; i < N+1; i++)
     {
-        zero_Num = i%10;
-        first_Num = (i/10)%10;
-        second_Num = (i/100)%10;
-        
+        zero_Num = i%10; // 1의 자리
+        first_Num = (i/10)%10; //10의 자리
+        second_Num = (i/100)%10; // 100의 자리
+
         if(i < 100)
         {
             result ++;
         }
 
-        if(i >= 100 && i < 999)
+        else if(i >= 100 && i <= 999)
         {
-            temp = second_Num - second_Num;
-            if(first_Num - zero_Num== temp)
+            temp = second_Num - first_Num;
+            if(first_Num == zero_Num + temp && second_Num == zero_Num + temp * 2)
             {
                 result++;   
             }      
         }
+
+        
     }  
 
     
