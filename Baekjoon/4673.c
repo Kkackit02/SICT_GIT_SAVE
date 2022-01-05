@@ -1,7 +1,7 @@
 #include<stdio.h>
 
-int selfNumber(int a,int max_range , int matrix[max_range]);
-int print(int max_range, int matrix[max_range]);
+int selfNumber(int a,int max_range , int matrix[10000]);
+int print(int max_range, int matrix[10000]);
 int main(void)
 {
     int start_N = 1;
@@ -16,16 +16,16 @@ int main(void)
 
     for (start_N; start_N < max_range; start_N++)
     {
-	selfNumber(start_N, matrix, max_range); 
+	selfNumber(start_N, max_range, matrix); 
     }
 
-    print(matrix, max_range);
+    print(max_range, matrix);
 }
 
 
 
 
-int selfNumber(int origin_number, int max_range , int matrix[max_range])
+int selfNumber(int origin_number, int max_range , int matrix[10000])
 {
     
     int digit[4] = {0,}; // 0, 1, 2, 3, 4
@@ -51,12 +51,12 @@ int selfNumber(int origin_number, int max_range , int matrix[max_range])
     if((result <= max_range)) // matrix 배열에 생성자 위치 값에 0 삽입
     {
 	matrix[result] = 0;
-	selfNumber(result, matrix); //반복
+	selfNumber(result, max_range, matrix); //반복
     }
     
 }
 
-int print(int max_range, int matrix[max_range])
+int print(int max_range, int matrix[10000])
 {
     for (int i = 0; i < max_range; i++)
     {
