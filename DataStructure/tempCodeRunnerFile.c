@@ -1,0 +1,1 @@
+printf("array[%d] : %d = array[%d] : %d \n", j + 1, array[j + 1], j, array[j]);
